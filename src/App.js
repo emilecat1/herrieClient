@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import AddList from "./pages/AddList";
 import Profile from "./pages/Profile";
 import Reservations from "./pages/Reservations";
+import ListPage from "./pages/ListPage";
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
         <Route path="/AddList" element={<AddList />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Reservations" element={<Reservations />} />
+        <Route path="/ListPage" element={<ListPage />} />
+
       </Routes>
       <Nav />
 

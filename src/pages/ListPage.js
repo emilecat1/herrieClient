@@ -12,11 +12,11 @@ const ListPage = () => {
 
             <Stack direction="row">
                 <IconButton component={Link} to="/List" color="primary" aria-label="profile" >
-                    <ArrowBackIcon sx={{ mt:5, fontSize: 30 }} />
+                    <ArrowBackIcon sx={{ mt:6, fontSize: 30 }} />
                 </IconButton>
-                <Typography variant="h2" sx={{mt:5.5}}>Lijst 1</Typography>
-                <IconButton component={Link} to="/AddList" color="secondary" aria-label="add"  >
-                    <AddBoxIcon sx={{ mt: 5, fontSize: 60 }} />
+                <Typography variant="h2" sx={{mt:7}}>Lijst 1</Typography>
+                <IconButton component={Link} to="/AddListItem" color="secondary" aria-label="add"  >
+                    <AddBoxIcon sx={{ mt: 5, fontSize: 40 }} />
                 </IconButton>
             </Stack>
 

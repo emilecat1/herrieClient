@@ -5,7 +5,7 @@ import placeholder from '../assets/Iplaceholder.jpeg';
 const ListSelf = () => {
     return (
         <>
-            <Stack direction="row" justifyContent="center" sx={{ mt: 5 }} >
+            <Stack direction="row" justifyContent="center" sx={{ mt: 1 }} >
                 <IconButton component={Link} to="/ListPage" aria-label="delete">
                 <Paper elevation={1} sx={{ width: 300, height: 100, display: 'flex', alignItems: 'center', flexDirection: 'row', }}>
                     <Box sx={{ ml: 3 }}>

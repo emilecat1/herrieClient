@@ -1,4 +1,4 @@
-import { GlobalStyles, Container, Stack, Typography, IconButton, List } from "@mui/material";
+import { GlobalStyles, Container, Stack, Typography, IconButton } from "@mui/material";
 import Nav from '../components/Nav.js';
 import ListSelf from '../components/ListSelf.js';
 import AddBoxIcon from '@mui/icons-material/AddBox';

@@ -24,6 +24,9 @@ const Reservations = () => {
                 <ReservationSelf />
                 <ReservationSelf />
                 <ReservationSelf />
+                <ReservationSelf />
+                <ReservationSelf />
+                <ReservationSelf />
             </Stack>
         </>
      );

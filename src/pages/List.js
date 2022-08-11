@@ -27,7 +27,7 @@ const List = () => {
                     </IconButton>
                 </Stack>
               
-                <Stack spacing={2}>
+                <Stack spacing={2} sx={{mb: 15}}>
                     <ListSelf />
                     <ListSelf />
                     <ListSelf />

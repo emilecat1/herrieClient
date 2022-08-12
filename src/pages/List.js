@@ -1,4 +1,5 @@
-import { GlobalStyles, Container, Stack, Typography, IconButton } from "@mui/material";
+import { GlobalStyles, Container, Stack, Typography, IconButton, Alert, CircularProgress  } from "@mui/material";
+import { useQuery } from 'react-query';
 import Nav from '../components/Nav.js';
 import ListSelf from '../components/ListSelf.js';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -7,13 +8,37 @@ import { Link } from 'react-router-dom';
 
 const List = () => {
 
+    console.log("Hello World");
 
+
+   
+
+
+    const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
+        const data = await fetch("http://localhost:1337/api/lists?populate=*").then(r => r.json());
+        console.log(data);
+        return data;
+    });
+
+
+   
+ 
+
+
+
+ 
+
+    
+
+    
 
     return (
         <>
             <GlobalStyles
                 styles={{ body: { backgroundColor: "#eafcf7" }, }}
             />
+
+            
 
            
             <Container>
@@ -26,21 +51,21 @@ const List = () => {
                         <AddBoxIcon sx={{mt:5, fontSize: 60 }} />
                     </IconButton>
                 </Stack>
+
+                {isLoading && <CircularProgress />}
+                {error && <Alert severity="error">Something went wrong</Alert>}
+                {error && console.log(error)}
               
                 <Stack spacing={2} sx={{mb: 15}}>
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
-                    <ListSelf />
+              
+                      
+
+
                 </Stack>
 
+                
 
-
-
+               
             </Container>
             <Nav />
         </>

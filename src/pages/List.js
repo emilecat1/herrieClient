@@ -64,7 +64,7 @@ const List = () => {
                     {/* {lists && <Typography> {(lists.data[0].attributes.name)}</Typography>}  */}
 
 
-                    <Stack spacing={2} sx={{ flex: 1 }}>
+                    <Stack spacing={1} sx={{ flex: 1, maxHeight: 550, overflow: 'auto' }}>
                         
                         {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
                         {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}

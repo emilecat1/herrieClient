@@ -16,7 +16,7 @@ const Reservations = () => {
                 
             </Stack>
 
-            <Stack spacing={2}>
+            <Stack spacing={2} sx={{ mt: -5, maxHeight: 600, overflow: 'auto' }}>
                 <ReservationSelf />
                 <ReservationSelf />
                 <ReservationSelf />

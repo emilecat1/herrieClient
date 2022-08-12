@@ -46,7 +46,7 @@ const Home = () => {
                 </Stack>
                 <Stack sx={{ mt: 5 }}>
                     <Typography component="h2" variant="h2" sx={{ mb: 2 }}> Notificaties </Typography>
-                    <Stack spacing={2} sx={{ mb: 15 }}>
+                    <Stack spacing={2} sx={{ mb: 15, maxHeight: 420, overflow: 'auto' }}>
                         <Notification />
                         <Notification />
                         <Notification />

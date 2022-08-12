@@ -22,7 +22,7 @@ const ListPage = () => {
 
 
 
-            <Stack spacing={1}>
+            <Stack spacing={1} sx={{ maxHeight: 640, overflow: 'auto' }}>
                 <ListItem />
                 <ListItem />
                 <ListItem />

@@ -24,6 +24,8 @@ function App() {
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/Pinned" element={<Pinned />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />
+       
+        
 
       </Routes>
       <Nav />

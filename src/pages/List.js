@@ -16,9 +16,11 @@ const List = () => {
 
     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
         const data = await fetch("http://localhost:1337/api/lists?populate=*").then(r => r.json());
-        console.log(data);
+        console.log(data)
         return data;
     });
+
+    
 
 
    
@@ -54,12 +56,21 @@ const List = () => {
 
                 {isLoading && <CircularProgress />}
                 {error && <Alert severity="error">Something went wrong</Alert>}
-                {error && console.log(error)}
+                
+               
               
                 <Stack spacing={2} sx={{mb: 15}}>
               
-                      
+                    {/* {lists && <Typography> {(lists.data[0].attributes.name)}</Typography>}  */}
 
+
+                    <Stack spacing={2} sx={{ flex: 1 }}>
+                        
+                        {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
+                        {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
+                        
+                    </Stack>
+              
 
                 </Stack>
 

@@ -21,6 +21,7 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Reservations" element={<Reservations />} />
         <Route path="/ListPage" element={<ListPage />} />
+        <Route path="/ListDetail/:id" element={<ListPage />} />
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/Pinned" element={<Pinned />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />

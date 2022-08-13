@@ -19,19 +19,6 @@ const List = () => {
         return data;
     });
 
-    
-
-
-   
- 
-
-
-
- 
-
-    
-
-    
 
     return (
         <>
@@ -39,9 +26,6 @@ const List = () => {
                 styles={{ body: { backgroundColor: "#eafcf7" }, }}
             />
 
-            
-
-           
             <Container>
                 <Stack direction="row" alignItems="center">
                     <Stack direction="row" alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 5 }}>
@@ -53,8 +37,7 @@ const List = () => {
                     </IconButton>
                 </Stack>
 
-                {isLoading && <CircularProgress />}
-                {error && <Alert severity="error">Something went wrong</Alert>}
+               
                 
                
               
@@ -64,6 +47,9 @@ const List = () => {
 
 
                     <Stack spacing={1} sx={{ flex: 1, maxHeight: 550, overflow: 'auto' }}>
+
+                        {isLoading && <CircularProgress />}
+                        {error && <Alert severity="error">Something went wrong</Alert>}
                         
                         {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
                         

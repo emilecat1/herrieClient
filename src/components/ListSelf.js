@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import placeholder from '../assets/Iplaceholder.jpeg';
 
 const ListSelf = ({ list }) => {
+
+
+    
     return (
         <>
             <Stack direction="row" justifyContent="center" sx={{ mt: 1 }} >
@@ -13,7 +16,7 @@ const ListSelf = ({ list }) => {
                         </Box>
                         <Stack  alignItems="flex-end" sx={{ ml: 3, width: 170 }}>
                             <Typography noWrap sx={{ fontSize: 30, color: 'primary.main', width: 170 }}>{list.attributes.name}</Typography>
-                            <Typography sx={{mr: 4}}>{list.attributes.listId}</Typography>
+                            <Typography sx={{mr: 4}}>Lijstcode: {list.id}</Typography>
                         </Stack>
                     </Paper>
                 </IconButton>

@@ -5,6 +5,7 @@ import ListSelf from '../components/ListSelf.js';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Link } from 'react-router-dom';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const List = () => {
 
@@ -12,10 +13,8 @@ const List = () => {
 
 
    
-
-
     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
-        const data = await fetch("http://localhost:1337/api/lists?populate=*").then(r => r.json());
+        const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
         console.log(data)
         return data;
     });
@@ -66,7 +65,6 @@ const List = () => {
 
                     <Stack spacing={1} sx={{ flex: 1, maxHeight: 550, overflow: 'auto' }}>
                         
-                        {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
                         {lists && lists.data.map(list => <ListSelf key={list.id} list={list} />)}
                         
                     </Stack>

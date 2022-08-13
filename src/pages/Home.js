@@ -1,14 +1,23 @@
 import Nav from '../components/Nav.js';
 import Notification from '../components/Notification.js';
-import { Button, GlobalStyles, Container, Stack } from "@mui/material";
+import { Button, GlobalStyles, Container, Stack, Paper } from "@mui/material";
 import { Typography } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+import blog from '../assets/blog.jpeg';
+import { useQuery } from 'react-query';
+
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
 
-const Home = () => {
+const Home = ( ) => {
+
+    const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
+        const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
+        return data;
+    });
 
 
 
@@ -21,8 +30,8 @@ const Home = () => {
             <Container>
 
                 <Stack direction="row" justifyContent="center">
-                    <Stack direction="row" sx={{ ml: 2, mr: 2, mt: 5}}>
-                        <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 30, color: "primary.main"}} >LIJSTJES</Typography>
+                    <Stack direction="row" sx={{ ml: 2, mr: 2, mt: 5 }}>
+                        <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 30, color: "primary.main" }} >LIJSTJES</Typography>
                         <Typography component="h1" variant="h6" sx={{ fontWeight: "light", fontSize: 30, color: "primary.main" }} >TIJD</Typography>
                     </Stack>
                     <IconButton component={Link} to="/Profile" color="primary" aria-label="profile" >
@@ -39,11 +48,26 @@ const Home = () => {
                     </Button>
                     <Button component={Link} to="/List" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5 }}>
                         <Stack alignItems="center">
-                            <Typography sx={{ fontSize: 30 }}> 1 </Typography>
+                            {lists && <Typography sx={{ fontSize: 30 }}> {Object.keys(lists.data).length} </Typography>}
                             <Typography sx={{ fontSize: 20 }}> Lijstjes </Typography>
                         </Stack>
                     </Button>
                 </Stack>
+
+                <Stack alignItems="center" sx={{ mt: 5 }} >
+                    <a href="https://lijstjestijd.be/blog/onze-vakantie-ging-van-%e2%9b%b1%ef%b8%8f%e2%98%80%ef%b8%8fnaar-%f0%9f%8d%b2%e2%9b%ba-tips-dicht-bij-huis/">
+                        <Paper sx={{ minWidth: '340px', pt: 2 }} >
+                            <Stack alignItems="center">
+                                <img src={blog} alt="placeholder" width={'320px'} height={'150px'}></img>
+                                <Typography sx={{ mb: 2, mt: 2 }}> Onze vakantie ging van 🏖️ ☀️ naar... </Typography>
+                            </Stack>
+
+                        </Paper>
+                    </a>
+
+                </Stack>
+
+
                 <Stack sx={{ mt: 5 }}>
                     <Typography component="h2" variant="h2" sx={{ mb: 2 }}> Notificaties </Typography>
                     <Stack spacing={2} sx={{ mb: 15, maxHeight: 420, overflow: 'auto' }}>

@@ -13,7 +13,7 @@ const List = () => {
 
 
    
-    const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
+    const { isLoading, error, data: lists } = useQuery(["lists",], async () => {
         const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
         return data;
     });

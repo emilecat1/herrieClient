@@ -21,6 +21,11 @@ const theme = createTheme({
         },
 
     },
+
+    shape: {
+        borderRadius: 2.5,
+    },
+
     typography: {
         button: {
             textTransform: 'none'

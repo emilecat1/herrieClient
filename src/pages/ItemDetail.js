@@ -1,5 +1,5 @@
-import { GlobalStyles, Paper, Typography, Stack, TextField, Alert, Snackbar, CircularProgress, Button, Box } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { GlobalStyles, Paper, Typography, Stack, Alert, CircularProgress, Button, Box } from '@mui/material';
+import { useParams } from 'react-router-dom';
 import { useQuery } from "react-query";
 import placeholder from '../assets/Iplaceholder.jpeg';
 

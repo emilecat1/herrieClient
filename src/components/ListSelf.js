@@ -4,6 +4,8 @@ import placeholder from '../assets/Iplaceholder.jpeg';
 
 const ListSelf = ({ list }) => {
 
+    console.log(list , "check");
+
 
 
     return (

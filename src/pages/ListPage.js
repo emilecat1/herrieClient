@@ -15,9 +15,11 @@ const ListPage = () => {
 
     const { isLoading, error, data: list } = useQuery(["lists", id], async () => {
         const data = await fetch(`${backendURL}/api/lists/${id}?populate=*`).then(r => r.json());
-        console.log(data)
+        console.log(data);
         return data;
     });
+
+   
 
     if (isLoading) {
         return <CircularProgress />
@@ -27,8 +29,10 @@ const ListPage = () => {
         return <Alert severity="error">Something went wrong</Alert>
     };
 
+    const items = list.data.attributes.items;
+
     if (list) {
-        console.log(list)
+        console.log(items.data);
 
 
 
@@ -54,7 +58,11 @@ const ListPage = () => {
 
 
                 <Stack spacing={1} sx={{ maxHeight: 640, overflow: 'auto' }}>
+
+
                     <ListItem/>
+
+                     {list && items.data.map(item => <ListItem key={item.id} item={item} />)}
 
                 </Stack>
             </>

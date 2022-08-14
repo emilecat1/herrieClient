@@ -2,7 +2,7 @@ import { GlobalStyles, TextField, Stack, Typography, Button, IconButton, } from 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 
-const AddListItem = () => {
+const AddListItem = ({list}) => {
     return (
         <>
             <GlobalStyles
@@ -15,7 +15,7 @@ const AddListItem = () => {
                         <ArrowBackIcon sx={{ fontSize: 30 }} />
                     </IconButton>
 
-                    <Typography sx={{mt: 1}} component="h1" variant="h1">Item toevoegen</Typography>
+                    <Typography sx={{ mt: 1 }} component="h1" variant="h1">Item toevoegen</Typography>
                 </Stack>
                 <Stack sx={{ mt: 5 }}>
                     <Typography variant="h2">1. van het internet</Typography>
@@ -32,7 +32,9 @@ const AddListItem = () => {
                     <Typography sx={{ mt: 2 }} variant="h3">Geef de naam van het artikel in dat je wil toevoegen en klik op gaan.</Typography>
                     <TextField sx={{ mt: 2, maxWidth: 300 }} id="filled-basic" variant="filled" onChange={(e) => this.handleTextFieldChange(e)} />
                     <Stack alignItems="flex-end" sx={{ maxWidth: 300 }}>
-                        <Button type="submit" variant="contained" sx={{ maxWidth: '100px', mt: 5 }}>Submit</Button>
+            
+                            <Button type="submit" variant="contained" sx={{ maxWidth: '100px', mt: 5 }}>Submit</Button>
+              
                     </Stack>
                 </Stack>
             </Stack>

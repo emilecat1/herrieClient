@@ -9,6 +9,7 @@ import ListPage from "./pages/ListPage";
 import AddListItem from "./pages/AddListItem";
 import Pinned from "./pages/Pinned";
 import LijstBewaren from "./pages/LijstBewaren";
+import ItemDetail from "./pages/ItemDetail";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Reservations" element={<Reservations />} />
         <Route path="/ListPage" element={<ListPage />} />
         <Route path="/ListDetail/:id" element={<ListPage />} />
+        <Route path="/ItemDetail/:id" element={<ItemDetail />} />
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/Pinned" element={<Pinned />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />

@@ -3,7 +3,7 @@ import { GlobalStyles, Paper, Typography, Stack, TextField, Alert, Snackbar } fr
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useForm } from "react-hook-form";
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -14,7 +14,8 @@ const AddList = () => {
         name: ""
     };
 
-    console.log(backendURL)
+    const navigate = useNavigate();
+
 
     const queryClient = useQueryClient()
 
@@ -40,6 +41,8 @@ const AddList = () => {
 
     const onSubmit = data => {
         mutation.mutate({ data })
+
+        navigate('/list')
 
     }
 

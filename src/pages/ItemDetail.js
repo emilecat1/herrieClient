@@ -28,7 +28,7 @@ const ItemDetail = () => {
 
 
     if (item) {
-        console.log(item.data.attributes.productName);
+        console.log(item.data.attributes.image.data.attributes.url);
 
         return (
 
@@ -48,7 +48,7 @@ const ItemDetail = () => {
                     </Stack>
                     <Stack alignItems="center">
                         <Box sx={{ mt: 3 }}>
-                            <img src={placeholder} alt="placeholder" width={'100px'}></img>
+                            <img src={item.data.attributes.image.data.attributes.url} alt="placeholder" width={'100px'}></img>
                         </Box>
                     </Stack>
                     <Stack sx={{ ml: 2, mr: 2 }}>

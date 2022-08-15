@@ -33,6 +33,8 @@ const Home = ( ) => {
             />
             <Container>
 
+                halllooo dit is een test
+
                 {isLoggedIn ? (
                     <>
                         {username}

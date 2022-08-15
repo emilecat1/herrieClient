@@ -1,4 +1,5 @@
 import { GlobalStyles, TextField, Stack, Typography, Button } from "@mui/material";
+import { useStore } from '../store';
 
 const Profile = () => {
     return (

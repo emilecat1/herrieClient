@@ -19,11 +19,25 @@ const Home = () => {
     const username = useStore(state => state.username);
     const logout = useStore(state => state.logout);
 
-    const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
-        const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
+    // const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
+    //     const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
+    //     console.log(data);
+    //     return data;
+    // });
+
+    // const { isLoading, error, data: users } = useQuery(["users"], async () => {
+    //     const data = await fetch(`${backendURL}/api/users/?populate=*`).then(r => r.json());
+    //     console.log(data, 'homusers');
+    //     return data;
+    // });
+
+    const { isLoading, error, data: users } = useQuery(["users"], async () => {
+        const data = await fetch(`${backendURL}/api/users/?filters[username][$eq]=${username}&populate=*`).then(r => r.json());
+        console.log(data[0].lists, 'homusers');
         return data;
     });
 
+    console.log(users);
 
 
     return (
@@ -31,9 +45,10 @@ const Home = () => {
             <GlobalStyles
                 styles={{ body: { backgroundColor: "#eafcf7" }, }}
             />
+
+
             <Container>
 
-                halllooo dit is een test
 
                 {isLoggedIn ? (
                     <>
@@ -47,7 +62,7 @@ const Home = () => {
                 <Stack direction="row" justifyContent="center">
                     <Stack direction="row" sx={{ ml: 2, mr: 2, mt: 5 }}>
                         <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 30, color: "primary.main" }} >LIJSTJES</Typography>
-                        <Typography component="h1" variant="h6" sx={{ fontWeight: "light", fontSize: 30, color: "primary.main" }} >huh?</Typography>
+                        <Typography component="h1" variant="h6" sx={{ fontWeight: "light", fontSize: 30, color: "primary.main" }} >TIJD</Typography>
                     </Stack>
                     <IconButton component={Link} to="/Profile" color="primary" aria-label="profile" >
                         <AccountCircleOutlinedIcon sx={{ mt: 5, fontSize: 30 }} />
@@ -63,7 +78,7 @@ const Home = () => {
                     </Button>
                     <Button component={Link} to="/List" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5 }}>
                         <Stack alignItems="center">
-                            {lists && <Typography sx={{ fontSize: 30 }}> {Object.keys(lists.data).length} </Typography>}
+                              {users && <Typography sx={{ fontSize: 30 }}> {Object.keys(users[0].lists).length} </Typography>} 
                             <Typography sx={{ fontSize: 20 }}> Lijstjes </Typography>
                         </Stack>
                     </Button>

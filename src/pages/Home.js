@@ -13,7 +13,7 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
 
-const Home = ( ) => {
+const Home = () => {
 
     const isLoggedIn = useStore(state => state.isLoggedIn);
     const username = useStore(state => state.username);
@@ -41,7 +41,7 @@ const Home = ( ) => {
                         <Button color="inherit" onClick={logout}>Logout</Button>
                     </>
                 ) : (
-                        <Button color="inherit" component="a" href={`${backendURL}/api/connect/google`}>Login</Button>
+                    <Button color="inherit" component="a" href={`${backendURL}/api/connect/google`}>Login</Button>
                 )}
 
                 <Stack direction="row" justifyContent="center">
@@ -55,7 +55,7 @@ const Home = ( ) => {
                 </Stack>
 
                 <Stack direction="row" justifyContent="center" spacing={3} sx={{ mt: 5 }} >
-                    <Button component={Link} to="/about" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5  }}>
+                    <Button component={Link} to="/about" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5 }}>
                         <Stack alignItems="center">
                             <Typography sx={{ fontSize: 30 }}> 1 </Typography>
                             <Typography sx={{ fontSize: 20 }}> Reservaties </Typography>

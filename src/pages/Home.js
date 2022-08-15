@@ -47,7 +47,7 @@ const Home = ( ) => {
                 <Stack direction="row" justifyContent="center">
                     <Stack direction="row" sx={{ ml: 2, mr: 2, mt: 5 }}>
                         <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 30, color: "primary.main" }} >LIJSTJES</Typography>
-                        <Typography component="h1" variant="h6" sx={{ fontWeight: "light", fontSize: 30, color: "primary.main" }} >TIJD</Typography>
+                        <Typography component="h1" variant="h6" sx={{ fontWeight: "light", fontSize: 30, color: "primary.main" }} >huh?</Typography>
                     </Stack>
                     <IconButton component={Link} to="/Profile" color="primary" aria-label="profile" >
                         <AccountCircleOutlinedIcon sx={{ mt: 5, fontSize: 30 }} />

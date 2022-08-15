@@ -7,12 +7,17 @@ import { IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import blog from '../assets/blog.jpeg';
 import { useQuery } from 'react-query';
+import { useStore } from '../store';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
 
 const Home = ( ) => {
+
+    const isLoggedIn = useStore(state => state.isLoggedIn);
+    const username = useStore(state => state.username);
+    const logout = useStore(state => state.logout);
 
     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
         const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
@@ -26,8 +31,16 @@ const Home = ( ) => {
             <GlobalStyles
                 styles={{ body: { backgroundColor: "#eafcf7" }, }}
             />
-
             <Container>
+
+                {isLoggedIn ? (
+                    <>
+                        {username}
+                        <Button color="inherit" onClick={logout}>Logout</Button>
+                    </>
+                ) : (
+                        <Button color="inherit" component="a" href={`${backendURL}/api/connect/google`}>Login</Button>
+                )}
 
                 <Stack direction="row" justifyContent="center">
                     <Stack direction="row" sx={{ ml: 2, mr: 2, mt: 5 }}>

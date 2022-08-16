@@ -3,7 +3,12 @@ import ListItem from '../components/ListItem.js';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link, useParams } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { useQuery } from "react-query";
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useStore } from '../store'
+
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -18,6 +23,48 @@ const ListPage = () => {
         console.log(data);
         return data;
     });
+
+
+    const navigate = useNavigate();
+
+    const queryClient = useQueryClient();
+
+    const jwt = useStore(state => state.jwt)
+
+    const defaultValues = {
+        items: { id }
+    };
+
+    const { handleSubmit, formState: { errors }, register, reset } = useForm({ defaultValues });
+
+
+    const deleteList = async (data) => {
+        return await fetch(`${backendURL}/api/lists/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`
+            },
+            body: JSON.stringify(data),
+
+        })
+            .then(console.log(data))
+            .then(r => r.json());
+    }
+
+    const deleteMutation = useMutation(deleteList, {
+        onSuccess: () => {
+            console.log("success")
+            queryClient.invalidateQueries('lists');
+            reset()
+        },
+    })
+
+    const onSubmit = data => {
+        deleteMutation.mutate({ data })
+
+        navigate('/list')
+    }
 
    
 
@@ -64,6 +111,19 @@ const ListPage = () => {
 
                      {list && items.data.map(item => <ListItem key={item.id} item={item} />)}
 
+                </Stack>
+
+                <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)} direction="row" justifyContent="center" sx={{ mt: 5, ml: 4, mr: 4 }}>
+                    <LoadingButton
+                        sx={{ backgroundColor: 'red.main', fontSize: 20 }}
+                        // loading={deleteMutation.isLoading}
+                        variant="contained"
+                    
+                        loadingIndicator="Adding list"
+                        type="submit"
+                    >
+                        Verwijder lijst
+                    </LoadingButton>
                 </Stack>
             </>
         );

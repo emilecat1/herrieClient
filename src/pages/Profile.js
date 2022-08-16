@@ -43,13 +43,15 @@ const Profile = () => {
     console.log(userId)
 
     const updateUser = async (data) => {
-        return await fetch(`${backendURL}/api/users/${userId}`, {
+        return await fetch(`${backendURL}/api/users/${userId}?populate=*`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ data }),
-        }).then(r => r.json());
+        })
+            .then(console.log(data))
+            .then(r => r.json());
     }
 
     const mutationUpdateUser = useMutation(updateUser, {

@@ -14,7 +14,6 @@ const AddList = () => {
     const username = useStore(state => state.username);
 
     const defaultValues = {
-        user: username,
         name: ""
     };
 

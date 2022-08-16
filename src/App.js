@@ -13,6 +13,7 @@ import LijstBewaren from "./pages/LijstBewaren";
 import ItemDetail from "./pages/ItemDetail";
 import LoginRedirect from './pages/LoginRedirect';
 import LoginPage from './pages/LoginPage';
+import AddItem from './pages/AddItem';
 import { useStore } from './store';
 
 
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route exact path="/connect/:providerName/redirect" element={<LoginRedirect />} />
           <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/Profile" element={<LoginPage />} />
         </Routes>
       </div>
     )
@@ -57,10 +59,13 @@ function App() {
         <Route path="/Reservations" element={<Reservations />} />
         <Route path="/ListPage" element={<ListPage />} />
         <Route path="/ListDetail/:id" element={<ListPage />} />
+
         <Route path="/ItemDetail/:id" element={<ItemDetail />} />
+   
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/Pinned" element={<Pinned />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />
+        <Route path="/AddItem" element={<AddItem />} />
 
 
 

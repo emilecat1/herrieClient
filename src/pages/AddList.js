@@ -4,20 +4,25 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useForm } from "react-hook-form";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import {useStore} from '../store'
 
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const AddList = () => {
 
+    const username = useStore(state => state.username);
+
     const defaultValues = {
+        user: username,
         name: ""
     };
 
     const navigate = useNavigate();
 
-
     const queryClient = useQueryClient()
+
+    const jwt = useStore(state => state.jwt)
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm({ defaultValues });
 
@@ -26,9 +31,13 @@ const AddList = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`
             },
             body: JSON.stringify(data),
-        }).then(r => r.json());
+
+        })
+        .then(console.log(data))
+        .then(r => r.json());
     }
 
     const mutation = useMutation(postList, {
@@ -71,8 +80,14 @@ const AddList = () => {
                         />
 
 
-                        <LoadingButton loading={mutation.isLoading}
-                            sx={{ maxWidth: 300, mt: 4 }} loadingIndicator="Adding list" type="submit" variant="contained">Lijst toevoegen </LoadingButton>
+                        <LoadingButton
+                            loading={mutation.isLoading}
+                            sx={{ maxWidth: 300, mt: 4 }}
+                            loadingIndicator="Adding list"
+                            type="submit"
+                            variant="contained">
+                            Lijst toevoegen
+                        </LoadingButton>
                     </Stack>
                 </Paper>
             </Stack>

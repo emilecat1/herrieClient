@@ -50,7 +50,7 @@ const ListPage = () => {
                         <ArrowBackIcon sx={{ mt: 6, fontSize: 30 }} />
                     </IconButton>
                     <Typography variant="h2" sx={{ mt: 7 }}>{list.data.attributes.name}</Typography>
-                    <IconButton component={Link} to="/AddListItem" color="secondary" aria-label="add"  >
+                    <IconButton component={Link} to="/AddItem" color="secondary" aria-label="add"  >
                         <AddBoxIcon sx={{ mt: 5, fontSize: 40 }} />
                     </IconButton>
                 </Stack>

@@ -6,6 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useForm } from "react-hook-form";
 import { useStore } from '../store'
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -95,15 +96,15 @@ const ItemDetail = () => {
                         >
                             Verwijder
                         </LoadingButton>
-                        <Button sx={{ fontSize: 25 }} variant="text">Klaar</Button>
+                        <Button component={Link} to="/List" sx={{ fontSize: 25 }} variant="text">Klaar</Button>
                     </Stack>
                     <Stack alignItems="center">
 
-                        {item &&
+                        
                             <Box sx={{ mt: 3 }}>
-                                <img src={item.attributes} alt="placeholder" width={'100px'}></img>
+                                <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660759755/lijstjestijd/voetbal_edmjev.jpg" alt="placeholder" width={'100px'}></img>
                             </Box>
-                        }
+                        
 
 
                     </Stack>

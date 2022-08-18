@@ -1,4 +1,4 @@
-import { GlobalStyles, Paper, Typography, Stack, Alert, CircularProgress, Button, Box, TextField } from '@mui/material';
+import { GlobalStyles, Paper, Typography, Stack, Alert, CircularProgress, Button, Box, TextField, Container } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import placeholder from '../assets/Iplaceholder.jpeg';
@@ -11,13 +11,14 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
 const AddItem = () => {
+ 
 
     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
         const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
         console.log(data, 'dataadditem');
-        console.log(data[0].lists, 'homusers');
         return data;
     });
+
 
     const defaultValues = {
         list: [2],
@@ -72,7 +73,7 @@ const AddItem = () => {
                 styles={{ body: { backgroundColor: "#eafcf7" }, }}
             />
 
-
+        <Container sx={{maxWidth: 600}}>
             <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)}>
                 <Stack>
                     <Stack alignItems="center">
@@ -125,8 +126,9 @@ const AddItem = () => {
                         </Paper>
 
                         <Typography sx={{ mt: 2, mb: 1 }} variant="h2nalf">Omschrijving</Typography>
-                        <Paper sx={{ maxWidth: 350 }}>
-                            <TextField size="small" sx={{ mt: 2, ml: 2, mr: 2, mb: 1 }}
+                        <Paper sx={{ maxWidth: 450 }}>
+                            <Container sx={{maxWidth: 350}}>
+                            <TextField size="small" sx={{ mt: 1, mb: 1, mr: 2 }}
                                 id="description"
                                 label="omschrijving"
                                 required
@@ -139,12 +141,13 @@ const AddItem = () => {
                                     required: 'description name is required'
                                 })}
                             />
+                            </Container>
                         </Paper>
 
                         <LoadingButton
                             loading={mutation.isLoading}
                             sx={{ minWidth: 160, mt: 4 }}
-                            loadingIndicator="Adding list"
+                            loadingIndicator="Adding item"
                             type="submit"
                             variant="contained">
                             Item toevoegen
@@ -156,6 +159,7 @@ const AddItem = () => {
 
                 </Stack>
             </Stack>
+            </Container>
         </>
     );
 }

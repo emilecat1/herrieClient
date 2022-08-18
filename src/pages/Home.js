@@ -56,11 +56,6 @@ const Home = () => {
 	 	window.location.reload();
 	 }
 
-
-
-
-
-
     if (users[0]) {
   
 

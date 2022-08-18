@@ -6,12 +6,9 @@ const ListItem = ({ item }) => {
 
     
 
-    
 
 
     if (item) {
-
-        console.log(item.attributes.productName, "checklistitem");
 
 
         return (
@@ -20,7 +17,7 @@ const ListItem = ({ item }) => {
                     <IconButton component={Link} to={`/ItemDetail/${item.id}`} aria-label="delete">
                         <Paper elevation={1} sx={{ width: 300, height: 100, display: 'flex', alignItems: 'center', flexDirection: 'row', }}>
                             <Box sx={{ ml: 3 }}>
-                                <img src={placeholder} alt="placeholder" width={'70px'}></img>
+                             { item.attributes.imgPath === null ?  <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660836557/lijstjestijd/present-gift_jczbd5.gif" alt="placeholder" width={'70px'}></img> : <img src={item.attributes.imgPath} alt="placeholder" width={'70px'}></img> }
                             </Box>
                             <Stack alignItems="flex-end" sx={{ ml: 3 }}>
 

@@ -14,10 +14,13 @@ import ItemDetail from "./pages/ItemDetail";
 import LoginRedirect from './pages/LoginRedirect';
 import LoginPage from './pages/LoginPage';
 import AddItem from './pages/AddItem';
+import Suggestions from './pages/Suggestions';
 import { useStore } from './store';
 
 
 function App() {
+
+
 
   const isLoggedIn = useStore(state => state.isLoggedIn)
 
@@ -59,11 +62,12 @@ function App() {
         <Route path="/Reservations" element={<Reservations />} />
         <Route path="/ListPage" element={<ListPage />} />
         <Route path="/ListDetail/:id" element={<ListPage />} />
+        <Route path="/AddItem/:id" element={<AddItem />} />
         <Route path="/ItemDetail/:id" element={<ItemDetail />} />
-        <Route path="/AddItem" element={<AddItem />} />
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/Pinned" element={<Pinned />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />
+        <Route path="/Suggestions" element={<Suggestions />} />
       </Routes>
       <Nav />
 

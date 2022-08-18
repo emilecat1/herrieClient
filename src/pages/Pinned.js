@@ -14,7 +14,6 @@ import React, { useState } from "react";
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const Pinned = () => {
-  const [listId, setListId] = useState("");
 
   const { isLoading, error, data: list, } = useQuery(["lists"], async () => {
     const data = await fetch(`${backendURL}/api/lists?populate=*`).then((r) =>r.json());

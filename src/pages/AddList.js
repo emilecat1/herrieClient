@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useStore } from "../store";
+import PropTypes from 'prop-types';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -123,6 +124,12 @@ const AddList = () => {
       </Stack>
     </>
   );
+};
+
+AddList.propTypes = {
+  user: PropTypes.number,
+  name: PropTypes.string
+
 };
 
 export default AddList;

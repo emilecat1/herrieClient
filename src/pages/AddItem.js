@@ -7,21 +7,31 @@ import { useForm } from "react-hook-form";
 import { useStore } from '../store'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
-const AddItem = () => {
+const AddItem = ({ route }) => {
 
-    const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
-        const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
-        console.log(data, 'dataadditem');
-        return data;
-    });
+     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
+         const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
+         console.log(data, 'dataadditem');
+         return data;
+     });
+
+
+       let {id}  = useParams();
+
+       console.log({id}, 'OMFJSQMFJEQRMFJ?');
+
+
 
 
     const defaultValues = {
-        list: [2],
+        list: [id],
         amount: null,
         price: null,
         productName: "",
@@ -59,11 +69,60 @@ const AddItem = () => {
         },
     })
 
+
+    //USER AUTHENTICATION
+    const userIsAuthorised = (id, user) => {
+            //get lists of user
+
+            //check if list id is in user lists
+
+            //if yes true
+
+            //ifno false 
+
+            
+    }
+
     const onSubmit = data => {
+
+        //user auth
+        // if(userIsAuthorised(id, user)){
+            
+        //     mutation.mutate({ data })
+        // } else {
+        //     console.warn('fakka neef wa wil jij hier doen')
+        // }
+
         mutation.mutate({ data })
 
-        navigate('/list')
+        navigate(`/listDetail/${id}` )
     }
+
+    // let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dcy4p2yiq/upload';
+
+
+    // //image uploaden
+    // let base64Img = `data:image/jpg;base64,${pickerResult.base64}`;
+
+    //     let data = {
+    //         "file": base64Img,
+    //         "upload_preset": "avatars",
+    //     }
+    //     isLoading(true);
+    //     fetch(CLOUDINARY_URL, {
+    //         body: JSON.stringify(data),
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         method: 'POST',
+    //     }).then(async r => {
+    //         let data = await r.json()
+    //         const photo = data.url;
+    //         postItems(photo);
+    //     }).catch(err => console.log(err))
+    
+
+
 
 
     return (
@@ -171,4 +230,14 @@ const AddItem = () => {
     );
 }
 
+AddItem.propTypes = {
+    list: PropTypes.number,
+    amount: PropTypes.number,
+    price: PropTypes.number,
+    productName: PropTypes.string,
+    description: PropTypes.string
+
+  };
+
 export default AddItem;
+

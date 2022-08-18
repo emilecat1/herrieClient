@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useStore } from '../store'
+import PropTypes from 'prop-types';
 
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -17,6 +18,9 @@ const ListPage = () => {
 
     
     const { id } = useParams();
+    console.log(id);
+
+    
 
     
 
@@ -70,6 +74,14 @@ const ListPage = () => {
         navigate('/list')
     }
 
+    // const goTo = data => {
+
+    //     let listId = list.data.id;
+    //     console.log(listId, 'werk je gij nu eindelijk?');
+    //     navigate('/AddItem', { listId: listId});
+
+    // }
+
    
 
     if (isLoading) {
@@ -82,8 +94,22 @@ const ListPage = () => {
 
     const items = list.data.attributes.items;
 
+
+
+  
+
     if (list) {
+
+
         console.log(items.data);
+        console.log(list.data.id)
+    
+       
+    
+       
+
+
+
 
 
 
@@ -101,9 +127,13 @@ const ListPage = () => {
                         <ArrowBackIcon sx={{ mt: 6, fontSize: 30 }} />
                     </IconButton>
                     <Typography variant="h2" sx={{ mt: 7 }}>{list.data.attributes.name}</Typography>
-                    <IconButton component={Link} to="/AddItem" color="secondary" aria-label="add"  >
+
+
+                    <IconButton component={Link} to={`/AddItem/${list.data.id}`} color="secondary" aria-label="add"  >
                         <AddBoxIcon sx={{ mt: 5, fontSize: 40 }} />
                     </IconButton>
+
+
                 </Stack>
 
 
@@ -134,5 +164,9 @@ const ListPage = () => {
         );
     }
 }
+
+ListPage.propTypes = {
+    items: PropTypes.number,
+  };
 
 export default ListPage;

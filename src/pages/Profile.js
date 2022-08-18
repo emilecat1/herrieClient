@@ -13,10 +13,11 @@ const Profile = () => {
     const username = useStore(state => state.username);
     const logout = useStore(state => state.logout);
 
-     const defaultValues = {
-         username: "",
-         email: ""
-     };
+      const defaultValues = {
+          user:[3],
+          username: "",
+          email: ""
+      };
 
     const navigate = useNavigate();
 

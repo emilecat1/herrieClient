@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useStore } from '../store'
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -22,6 +23,14 @@ const ItemDetail = () => {
         return data;
     });
 
+
+    let listId;
+    if (item !== undefined) {
+        listId = item.data.attributes.list.data.id;
+    }
+
+    console.log(listId, "BBBBBBBBBBB")
+
     const navigate = useNavigate();
 
     const queryClient = useQueryClient();
@@ -31,6 +40,8 @@ const ItemDetail = () => {
     const defaultValues = {
         items: { id }
     };
+
+    
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm({ defaultValues });
 
@@ -60,7 +71,7 @@ const ItemDetail = () => {
     const onSubmit = data => {
         deleteMutation.mutate({ data })
 
-        navigate('/list')
+        navigate(`/listDetail/${listId}`)
     }
 
 
@@ -96,13 +107,13 @@ const ItemDetail = () => {
                         >
                             Verwijder
                         </LoadingButton>
-                        <Button component={Link} to="/List" sx={{ fontSize: 25 }} variant="text">Klaar</Button>
+                        <Button component={Link} to={`/listDetail/${listId}`} sx={{ fontSize: 25 }} variant="text">Klaar</Button>
                     </Stack>
                     <Stack alignItems="center">
 
                         
                             <Box sx={{ mt: 3 }}>
-                                <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660759755/lijstjestijd/voetbal_edmjev.jpg" alt="placeholder" width={'100px'}></img>
+                                <img src={item.data.attributes.imgPath} alt="placeholder" width={'100px'}></img>
                             </Box>
                         
 
@@ -140,6 +151,10 @@ const ItemDetail = () => {
     }
 
 }
+
+ItemDetail.propTypes = {
+    items: PropTypes.number,
+  };
 
 
 export default ItemDetail;

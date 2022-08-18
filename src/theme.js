@@ -19,8 +19,16 @@ const theme = createTheme({
         light: {
             main: '#FFFFFF',
         },
+        red: {
+            main: '#fa3434'
+        }
 
     },
+
+    shape: {
+        borderRadius: 2.5,
+    },
+
     typography: {
         button: {
             textTransform: 'none'
@@ -32,6 +40,16 @@ const theme = createTheme({
         },
         h2: {
             fontSize: 26,
+            color: '#266a85',
+            fontWeight: 'normal'
+        },
+        h2nalf: {
+            fontSize: 22,
+            color: '#266a85',
+            fontWeight: 'normal'
+        },
+        h3plus: {
+            fontSize: 18,
             color: '#266a85',
             fontWeight: 'normal'
         },

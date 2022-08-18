@@ -32,7 +32,7 @@ const Nav = () => {
                 <BottomNavigationAction to={"/"} component={RouterLink} icon={<RiHomeLine size={45}  />} />
                 <BottomNavigationAction to={"/List"} component={RouterLink} icon={<GoListUnordered size={40} />} />
                 <BottomNavigationAction to={"/Reservations"} component={RouterLink} icon={<BsFillGiftFill size={38} />} />
-                <BottomNavigationAction to={"/activity"} component={RouterLink} icon={<BsFillPinFill size={40} />} />
+                <BottomNavigationAction to={"/Pinned"} component={RouterLink} icon={<BsFillPinFill size={40} />} />
                 <BottomNavigationAction to={"/messages"} component={RouterLink} icon={<BsFillLightbulbFill size={40} />} />
                 
             </BottomNavigation>

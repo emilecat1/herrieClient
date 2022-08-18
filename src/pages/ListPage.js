@@ -14,7 +14,11 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const ListPage = () => {
 
+
+
     const { id } = useParams();
+
+    
 
 
 
@@ -104,7 +108,7 @@ const ListPage = () => {
 
 
 
-                <Stack spacing={1} sx={{ maxHeight: 640, overflow: 'auto' }}>
+                <Stack spacing={1} sx={{ minHeight: 540, maxHeight: 540, overflow: 'auto' }}>
 
 
                     <ListItem/>
@@ -121,6 +125,7 @@ const ListPage = () => {
                     
                         loadingIndicator="Adding list"
                         type="submit"
+                        
                     >
                         Verwijder lijst
                     </LoadingButton>

@@ -6,12 +6,12 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useStore } from '../store'
 import LoadingButton from '@mui/lab/LoadingButton';
+import React, { useState } from 'react';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 
 const AddItem = () => {
- 
 
     const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
         const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
@@ -81,6 +81,11 @@ const AddItem = () => {
                             <img alt="placeholder" width={'100px'}></img>
                         </Box>
                     </Stack>
+
+          
+
+
+
                     <Stack sx={{ ml: 2, mr: 2 }}>
                         <Typography sx={{ mt: 3, mb: 1 }} variant="h2nalf">Product naam</Typography>
                         <Paper sx={{ maxWidth: 230 }}>
@@ -103,6 +108,7 @@ const AddItem = () => {
                                 id="price"
                                 label="19.99"
                                 required
+                                type="number"
                                 error={!!errors?.productName}
                                 helperText={errors?.productName?.message}
                                 {...register("price", {
@@ -117,6 +123,7 @@ const AddItem = () => {
                                 id="amount"
                                 label="2"
                                 required
+                                type="number"
                                 error={!!errors?.productName}
                                 helperText={errors?.productName?.message}
                                 {...register("amount", {
@@ -128,12 +135,12 @@ const AddItem = () => {
                         <Typography sx={{ mt: 2, mb: 1 }} variant="h2nalf">Omschrijving</Typography>
                         <Paper sx={{ maxWidth: 450 }}>
                             <Container sx={{maxWidth: 350}}>
-                            <TextField size="small" sx={{ mt: 1, mb: 1, mr: 2 }}
+                            <TextField size="small" sx={{ mt: 1.5, mb: 1.5, mr: 2 }}
                                 id="description"
                                 label="omschrijving"
                                 required
                                 multiline
-                                rows={4.5}
+                                rows={4}
                                 fullWidth
                                 error={!!errors?.productName}
                                 helperText={errors?.productName?.message}

@@ -13,17 +13,19 @@ const Profile = () => {
     const username = useStore(state => state.username);
     const logout = useStore(state => state.logout);
 
-    const defaultValues = {
-        username: "",
-        email: ""
-    };
+     const defaultValues = {
+         username: "",
+         email: ""
+     };
 
     const navigate = useNavigate();
 
 
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { handleSubmit, formState: { errors }, register, reset } = useForm({ defaultValues });
+    const jwt = useStore((state) => state.jwt);
+
+    const { handleSubmit, formState: { errors }, register, reset } = useForm({  });
 
 
     const { isLoading, error, data: users } = useQuery(["userss"], async () => {
@@ -43,10 +45,11 @@ const Profile = () => {
     console.log(userId)
 
     const updateUser = async (data) => {
-        return await fetch(`${backendURL}/api/users/${userId}?populate=*`, {
+        return await fetch(`${backendURL}/api/users/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`,
             },
             body: JSON.stringify({ data }),
         })
@@ -54,7 +57,7 @@ const Profile = () => {
             .then(r => r.json());
     }
 
-    const mutationUpdateUser = useMutation(updateUser, {
+    const mutationUser = useMutation(updateUser, {
         onSuccess: () => {
             console.log("success")
             queryClient.invalidateQueries('users', userId);
@@ -63,9 +66,9 @@ const Profile = () => {
     })
 
     const onSubmit = data => {
-        mutationUpdateUser.mutate({ data })
+        mutationUser.mutate({ data })
 
-        navigate('/')
+         navigate('/')
 
     }
 
@@ -87,7 +90,7 @@ const Profile = () => {
             />
             <Stack noValidate onSubmit={handleSubmit(onSubmit)}>
                 <Stack sx={{ minWidth: 300 }} alignItems="flex-end">
-                    <LoadingButton loading={mutationUpdateUser.isLoading} type="submit" component={Link} to="/" sx={{ maxWidth: 90, mr: 5, mt: 5 }} variant="contained" loadingIndicator="updating profile" >Klaar</LoadingButton>
+                    <LoadingButton loading={mutationUser.isLoading} type="submit"  sx={{ backgroundColor: "secondary.main", maxWidth: 90, mr: 5, mt: 5 }} variant="contained" loadingIndicator="updating profile" >Klaar</LoadingButton>
 
                 </Stack>
 
@@ -95,7 +98,18 @@ const Profile = () => {
                     <Typography component="h1" variant="h2">Profiel</Typography>
                     <Stack sx={{ mt: 5 }}>
                         <Typography variant="h3">Email</Typography>
-                        <TextField sx={{ mt: 2, maxWidth: 300 }} id="filled-basic" label="emile.catteeuw3@gmail.com" variant="filled" onChange={(e) => this.handleTextFieldChange(e)} />
+                        {users &&
+                            <TextField
+                                sx={{ mt: 2, maxWidth: 300 }}
+                                id="email"
+                                label={users[0].email}
+                                variant="filled"
+                                error={!!errors?.email}
+                                helperText={errors?.email?.message}
+                                {...register("email", {
+                                    required: 'email is required'
+                                })}
+                            />}
                     </Stack>
                     <Stack sx={{ mt: 4 }}>
                         <Typography variant="h3">Naam</Typography>
@@ -113,7 +127,7 @@ const Profile = () => {
                             />}
 
                     </Stack>
-                    <Stack sx={{ mt: 4 }}>
+                    {/* <Stack sx={{ mt: 4 }}>
                         <Typography variant="h3">Adres</Typography>
                         <TextField sx={{ mt: 2, maxWidth: 300 }} id="filled-basic" label="Haiglaan" variant="filled" onChange={(e) => this.handleTextFieldChange(e)} />
                     </Stack>
@@ -126,9 +140,9 @@ const Profile = () => {
                             <Typography variant="h3">Stad</Typography>
                             <TextField sx={{ mt: 2, maxWidth: 130 }} id="filled-basic" label="Ieper" variant="filled" onChange={(e) => this.handleTextFieldChange(e)} />
                         </Stack>
-                    </Stack>
+                    </Stack> */}
                     <Stack sx={{ minWidth: 300 }} alignItems="center">
-                        <Button onClick={logout} sx={{ maxWidth: 90, mr: 5, mt: 5 }} variant="contained">Afmelden</Button>
+                        <Button onClick={logout} sx={{ backgroundColor: "red.main", maxWidth: 90, mr: 5, mt: 5 }} variant="contained">Afmelden</Button>
                     </Stack>
                 </Stack>
             </Stack>

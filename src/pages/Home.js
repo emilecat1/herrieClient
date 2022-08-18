@@ -15,6 +15,8 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const Home = () => {
 
+    
+
     const isLoggedIn = useStore(state => state.isLoggedIn);
     const username = useStore(state => state.username);
     const logout = useStore(state => state.logout);
@@ -48,10 +50,19 @@ const Home = () => {
         return <Alert severity="error">Something went wrong</Alert>
     };
 
+// refresh page once --> couldn't add lists or items (401 unauthorized) --> authorized after refresh voor een of andere reden
+     if(!window.location.hash) {
+	 	window.location = window.location + '#loaded';
+	 	window.location.reload();
+	 }
+
+
+
 
 
 
     if (users[0]) {
+  
 
         return (
             <>

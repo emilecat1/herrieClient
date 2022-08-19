@@ -16,21 +16,24 @@ const List = () => {
     console.log("Hello World");
 
 
-
-    //  const { isLoading, error, data: lists } = useQuery(["lists"], async () => {
-    //      const data = await fetch(`${backendURL}/api/lists?populate=*`).then(r => r.json());
-    //      console.log(data, 'halloooooooo');
-    //      return data;
-    //  });
-
      const { isLoading, error, data: lists } = useQuery(["users"], async () => {
          const data = await fetch(`${backendURL}/api/users/?filters[username][$eq]=${username}&populate=*`).then(r => r.json());
          console.log(data[0].lists, 'listusers');
          return data;
      });
 
+     
+     if (isLoading) {
+        return <CircularProgress />
+    };
+
+    if (error) {
+        return <Alert severity="error">Something went wrong</Alert>
+    };
 
 
+
+ 
 
     return (
         <>
@@ -55,14 +58,10 @@ const List = () => {
 
                 <Stack spacing={2} sx={{ mb: 15 }}>
 
-                    {/* {lists && <Typography> {(lists.data[0].attributes.name)}</Typography>}  */}
-
                     <Stack spacing={1} sx={{ flex: 1, maxHeight: 550, overflow: 'auto' }}>
 
                         {isLoading && <CircularProgress />}
                         {error && <Alert severity="error">Something went wrong</Alert>}
-
-
 
                          {lists && lists[0].lists.map(list => <ListSelf key={list.id} list={list} />)} 
 

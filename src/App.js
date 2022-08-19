@@ -9,7 +9,6 @@ import Reservations from "./pages/Reservations";
 import ListPage from "./pages/ListPage";
 import AddListItem from "./pages/AddListItem";
 import SearchList from "./pages/SearchList";
-import LijstBewaren from "./pages/LijstBewaren";
 import ItemDetail from "./pages/ItemDetail";
 import LoginRedirect from './pages/LoginRedirect';
 import LoginPage from './pages/LoginPage';
@@ -66,7 +65,6 @@ function App() {
         <Route path="/ItemDetail/:id" element={<ItemDetail />} />
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/SearchList" element={<SearchList />} />
-        <Route path="/LijstBewaren" element={<LijstBewaren />} />
         <Route path="/Suggestions" element={<Suggestions />} />
       </Routes>
       <Nav />

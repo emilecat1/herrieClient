@@ -92,14 +92,15 @@ const ListPage = () => {
         return <Alert severity="error">Something went wrong</Alert>
     };
 
+    
+
+
+
     const items = list.data.attributes.items;
 
-
-
-  
-
     if (list) {
-
+   
+        
 
         console.log(items.data);
         console.log(list.data.id)
@@ -139,9 +140,6 @@ const ListPage = () => {
 
 
                 <Stack spacing={1} sx={{ minHeight: 540, maxHeight: 540, overflow: 'auto' }}>
-
-
-                    <ListItem/>
 
                      {list && items.data.map(item => <ListItem key={item.id} item={item} />)}
 

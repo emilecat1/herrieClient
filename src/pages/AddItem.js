@@ -46,6 +46,8 @@ const AddItem = ({ route }) => {
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm({ defaultValues });
 
+    
+
 
     const postItems = async (data) => {
         return await fetch(`${backendURL}/api/items`, {

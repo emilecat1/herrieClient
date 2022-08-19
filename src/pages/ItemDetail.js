@@ -23,6 +23,8 @@ const ItemDetail = () => {
         return data;
     });
 
+    console.log(item , 'itemmmmmmmmmm')
+
 
     let listId;
     if (item !== undefined) {
@@ -112,9 +114,9 @@ const ItemDetail = () => {
                     <Stack alignItems="center">
 
                         
-                            <Box sx={{ mt: 3 }}>
-                                <img src={item.data.attributes.imgPath} alt="placeholder" width={'100px'}></img>
-                            </Box>
+                             <Box sx={{ ml: 3 }}>
+                             { item.data.attributes.imgPath === null ?  <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660836557/lijstjestijd/present-gift_jczbd5.gif" alt="placeholder" width={'70px'}></img> : <img src={item.data.attributes.imgPath} alt="placeholder" width={'70px'}></img> }
+                            </Box> 
                         
 
 

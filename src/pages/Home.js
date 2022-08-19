@@ -80,9 +80,9 @@ const Home = () => {
                     </Stack>
 
                     <Stack direction="row" justifyContent="center" spacing={3} sx={{ mt: 5 }} >
-                        <Button component={Link} to="/about" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5 }}>
+                        <Button component={Link} to="/Reservations" variant="contained" color="light" sx={{ maxWidth: '160px', minWidth: '160px', minHeight: '100px', borderRadius: 2.5 }}>
                             <Stack alignItems="center">
-                                <Typography sx={{ fontSize: 30 }}> 1 </Typography>
+                                <Typography sx={{ fontSize: 30 }}> 4 </Typography>
                                 <Typography sx={{ fontSize: 20 }}> Reservaties </Typography>
                             </Stack>
                         </Button>

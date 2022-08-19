@@ -13,7 +13,7 @@ import React, { useState } from "react";
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
-const Pinned = () => {
+const SearchList = () => {
 
   const { isLoading, error, data: list, } = useQuery(["lists"], async () => {
     const data = await fetch(`${backendURL}/api/lists?populate=*`).then((r) =>r.json());
@@ -43,24 +43,8 @@ if (error) {
 
         <Container>
           <Stack direction="row" alignItems="center">
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={2}
-              sx={{ ml: 2, mr: 2, mt: 7 }}
-            >
-              <Typography
-                component="h1"
-                variant="h6"
-                sx={{
-                  fontWeight: "normal",
-                  fontSize: 40,
-                  color: "primary.main",
-                  lineHeight: "35px",
-                }}
-              >
-                Zoek lijstjes
-              </Typography>
+            <Stack direction="row" alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 7 }} >
+              <Typography component="h1" variant="h6" sx={{ fontWeight: "normal",  fontSize: 40,  color: "primary.main", lineHeight: "35px", }} > Zoek lijstjes </Typography>
             </Stack>
           </Stack>
 
@@ -102,4 +86,4 @@ if (error) {
   }
 };
 
-export default Pinned;
+export default SearchList;

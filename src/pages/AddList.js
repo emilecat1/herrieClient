@@ -19,12 +19,6 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 const AddList = () => {
   const username = useStore((state) => state.username);
 
-  // const { isLoading, error, data: users } = useQuery(["users"], async () => {
-  //     const data = await fetch(`${backendURL}/api/users?populate=*`).then(r => r.json());
-  //     console.log(data, 'user data');
-  //     return data;
-  // });
-
   const { isLoading, error, data: users,} = useQuery(["users"], async () => { 
     const data = await fetch(`${backendURL}/api/users/?filters[username][$eq]=${username}&populate=*`).then((r) => r.json());
     console.log(data[0].id, "userid");
@@ -38,11 +32,7 @@ const AddList = () => {
         userId = users[0].id;
     }
 
-
-
   console.log(userId, "userId");
-
-  // console.log(userId, "dit is final user id");
 
   const defaultValues = {
     user: [userId],

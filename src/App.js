@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Reservations from "./pages/Reservations";
 import ListPage from "./pages/ListPage";
 import AddListItem from "./pages/AddListItem";
-import Pinned from "./pages/Pinned";
+import SearchList from "./pages/SearchList";
 import LijstBewaren from "./pages/LijstBewaren";
 import ItemDetail from "./pages/ItemDetail";
 import LoginRedirect from './pages/LoginRedirect';
@@ -65,7 +65,7 @@ function App() {
         <Route path="/AddItem/:id" element={<AddItem />} />
         <Route path="/ItemDetail/:id" element={<ItemDetail />} />
         <Route path="/AddListItem" element={<AddListItem />} />
-        <Route path="/Pinned" element={<Pinned />} />
+        <Route path="/SearchList" element={<SearchList />} />
         <Route path="/LijstBewaren" element={<LijstBewaren />} />
         <Route path="/Suggestions" element={<Suggestions />} />
       </Routes>

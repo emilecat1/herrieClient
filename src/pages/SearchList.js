@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import LoadingButton from "@mui/lab/LoadingButton";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import ListItem from '../components/ListItem.js';
+import SearchItem from '../components/SearchItem.js';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -102,7 +102,7 @@ const SearchList = () => {
             spacing={1}
             sx={{ minHeight: 540, maxHeight: 540, overflow: "auto" }}
           >
-            {isSubmitted && items.data.map(item => <ListItem key={item.id} item={item} />)}
+            {isSubmitted && items.data.map(item => <SearchItem key={item.id} item={item} />)}
           </Stack>
         </Container>
       </>

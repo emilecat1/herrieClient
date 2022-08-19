@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import List from "./pages/List";
 import Nav from "./components/Nav";
+import SearchItem from "./components/SearchItem";
 import AddList from "./pages/AddList";
 import Profile from "./pages/Profile";
 import Reservations from "./pages/Reservations";
@@ -13,6 +14,7 @@ import ItemDetail from "./pages/ItemDetail";
 import LoginRedirect from './pages/LoginRedirect';
 import LoginPage from './pages/LoginPage';
 import AddItem from './pages/AddItem';
+import SearchDetail from "./pages/SearchDetail";
 import Suggestions from './pages/Suggestions';
 import { useStore } from './store';
 
@@ -52,7 +54,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/connect/:providerName/redirect" element={<LoginRedirect />} />
+        <Route
+          exact
+          path="/connect/:providerName/redirect"
+          element={<LoginRedirect />}
+        />
         <Route exact path="/" element={<Home />} />
         <Route index element={<Home />} />
         <Route path="/List" element={<List />} />
@@ -63,12 +69,12 @@ function App() {
         <Route path="/ListDetail/:id" element={<ListPage />} />
         <Route path="/AddItem/:id" element={<AddItem />} />
         <Route path="/ItemDetail/:id" element={<ItemDetail />} />
+        <Route path="/SearchDetail/:id" element={<SearchDetail />} />
         <Route path="/AddListItem" element={<AddListItem />} />
         <Route path="/SearchList" element={<SearchList />} />
         <Route path="/Suggestions" element={<Suggestions />} />
       </Routes>
       <Nav />
-
     </div>
   );
 }

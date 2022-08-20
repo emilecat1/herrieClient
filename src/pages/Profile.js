@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useForm } from "react-hook-form";
 import LoadingButton from '@mui/lab/LoadingButton';
+import React, { useState } from "react";
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -13,12 +14,14 @@ const Profile = () => {
     const username = useStore(state => state.username);
     const logout = useStore(state => state.logout);
 
+    const [userChange, setUserChange] = useState();
+
     const { isLoading, error, data: users } = useQuery(["users"], async () => {
         const data = await fetch(`${backendURL}/api/users/?filters[username][$eq]=${username}`).then(r => r.json());
-        // console.log(data);
-        // console.log(data[0].username, 'homusers');
         return data;
     });
+
+
 
 
     let userId;
@@ -60,16 +63,16 @@ const Profile = () => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${jwt}`,
             },
-            body: JSON.stringify(),
+            body: JSON.stringify(data),
         })
-            .then(console.log(data, "updateuser"))
+            .then(console.log(data))
             .then(r => r.json());
     }
 
     const mutationUser = useMutation(updateUser, {
         onSuccess: () => {
             console.log("success")
-            queryClient.invalidateQueries('users');
+            queryClient.invalidateQueries('username');
             reset()
         },
     })
@@ -119,6 +122,8 @@ const Profile = () => {
                                 variant="filled"
                                 error={!!errors?.username}
                                 helperText={errors?.username?.message}
+                                onChange={(event) => setUserChange(event.target.value)}
+                                value={userChange}
                             />}
 
                     </Stack>

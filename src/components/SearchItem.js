@@ -17,9 +17,9 @@ const SearchItem = ({ item }) => {
 
         return (
             <>
-                <Stack direction="row" justifyContent="center" sx={{ mt: 5 }} >
+                <Stack direction="row" justifyContent="center" sx={{ mt: 2, mb:2 }} >
                     <IconButton component={Link} to={`/SearchDetail/${item.id}`} aria-label="delete">
-                        <Paper elevation={1} sx={{ width: 300, height: 100, display: 'flex', alignItems: 'center', flexDirection: 'row', }}>
+                        <Paper elevation={1} sx={{ width: 300, height: 120, display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
                             <Box sx={{ ml: 3 }}>
                              { item.attributes.imgPath === null ?  <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660836557/lijstjestijd/present-gift_jczbd5.gif" alt="placeholder" width={'70px'}></img> : <img src={item.attributes.imgPath} alt="placeholder" width={'70px'}></img> }
                             </Box>

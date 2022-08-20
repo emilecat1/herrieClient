@@ -64,6 +64,7 @@ const AddItem = ({ route }) => {
             .then(r => r.json());
     }
 
+
     const mutation = useMutation(postItems, {
         onSuccess: () => {
             console.log("success")
@@ -89,17 +90,12 @@ const AddItem = ({ route }) => {
         <Container sx={{maxWidth: 600}}>
             <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)}>
                 <Stack>
-                    <Stack alignItems="center">
-                        <Box sx={{ mt: 3 }}>
-                            <img alt="placeholder" width={'100px'}></img>
-                        </Box>
-                    </Stack>
 
-          
+                    <Stack alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 7 }}>
+                         <Typography component="h1" variant="h6" sx={{ fontWeight: "normal", fontSize: 40, color: "primary.main", lineHeight: "35px", }} > add item </Typography>
+                     </Stack>
 
-
-
-                    <Stack sx={{ ml: 2, mr: 2 }}>
+                    <Stack sx={{ ml: 2, mr: 2, mt: 2 }}>
                         <Typography sx={{ mt: 3, mb: 1 }} variant="h2nalf">Product naam</Typography>
                         <Paper sx={{ maxWidth: 230 }}>
                             <TextField size="small" sx={{ mt: 1, ml: 2, mb: 1 }}

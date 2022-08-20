@@ -20,7 +20,11 @@ const theme = createTheme({
             main: '#FFFFFF',
         },
         red: {
-            main: '#fa3434'
+            main: '#fa3434',
+            softer: '#fd9b9b'
+        },
+        grey: {
+            main: '#d3d3d3'
         }
 
     },

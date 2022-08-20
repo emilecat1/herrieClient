@@ -151,7 +151,7 @@ const AddItem = ({ route }) => {
                         <Typography sx={{ mt: 3, mb: 1 }} variant="h2nalf">Product naam</Typography>
                         <Paper sx={{ maxWidth: 230 }}>
                             <TextField size="small" sx={{ mt: 1, ml: 2, mb: 1 }}
-                         
+                                inputProps={{ maxLength: 20 }}
                                 id="productName"
                                 label="voetbal"
                                 required

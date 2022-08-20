@@ -10,6 +10,10 @@ const SearchItem = ({ item }) => {
 
     if (item) {
 
+        let reserved;
+        if (item !== undefined) {
+            reserved = item.attributes.isReserved;
+        }
 
         return (
             <>
@@ -19,10 +23,12 @@ const SearchItem = ({ item }) => {
                             <Box sx={{ ml: 3 }}>
                              { item.attributes.imgPath === null ?  <img src="https://res.cloudinary.com/ddinuqloh/image/upload/v1660836557/lijstjestijd/present-gift_jczbd5.gif" alt="placeholder" width={'70px'}></img> : <img src={item.attributes.imgPath} alt="placeholder" width={'70px'}></img> }
                             </Box>
-                            <Stack alignItems="flex-end" sx={{ ml: 3 }}>
+                              <Stack alignItems="flex-end" sx={{ ml: 3, minWidth:170, mr:2 }}>
 
-                                <Typography noWrap sx={{ fontSize: 20, color: 'primary.main', width: 170 }}>{item.attributes.productName}</Typography>
+                                <Typography noWrap sx={{ fontSize: 20, color: 'primary.main'}}>{item.attributes.productName}</Typography>
                                 <Typography>€ {item.attributes.price}</Typography>
+
+                                {reserved ? <Typography sx={{color: "secondary.main"}}>gereserveerd!</Typography> :  <Typography noWrap sx={{color: "red.main"}}>niet gereserveerd!</Typography> }
 
                             </Stack>
                         </Paper>

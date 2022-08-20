@@ -6,6 +6,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import SearchItem from '../components/SearchItem.js';
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -16,6 +17,10 @@ const SearchList = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [items, setItems] = useState();
+  const [title, setTitle] = useState();
+
+
+
 
 
 
@@ -24,8 +29,10 @@ const SearchList = () => {
   const onSubmit = async () => {
 
     const list = await fetch(`${backendURL}/api/lists/${listCode}?populate=*`).then(r => r.json());
+    console.log(list);
 
     setItems(list.data.attributes.items);
+    setTitle(list.data.attributes.name);
 
     setIsSubmitted(true);
   }
@@ -38,35 +45,12 @@ const SearchList = () => {
 
         <Container>
           <Stack direction="row" alignItems="center">
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={2}
-              sx={{ ml: 2, mr: 2, mt: 7 }}
-            >
-              <Typography
-                component="h1"
-                variant="h6"
-                sx={{
-                  fontWeight: "normal",
-                  fontSize: 40,
-                  color: "primary.main",
-                  lineHeight: "35px",
-                }}
-              >
-                {" "}
-                Zoek lijstjes{" "}
-              </Typography>
+            <Stack direction="row" alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 7 }}>
+              <Typography component="h1" variant="h6" sx={{ fontWeight: "normal", fontSize: 40, color: "primary.main", lineHeight: "35px", }} > Zoek lijstjes </Typography>
             </Stack>
           </Stack>
 
-          <Stack
-            as="form"
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
-            direction="row"
-            sx={{ mt: 2 }}
-          >
+          <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)} direction="row" sx={{ mt: 2 }} >
             <Paper sx={{ maxWidth: 240, mt: 2, ml: 1.5 }}>
               <Container sx={{ maxWidth: 340 }}>
                 <TextField
@@ -81,15 +65,7 @@ const SearchList = () => {
                 />
               </Container>
             </Paper>
-            <LoadingButton
-              sx={{
-                backgroundColor: "secondary.main",
-                fontSize: 18,
-                maxHeight: 50,
-                mt: 2.5,
-                ml: 2,
-              }}
-              // loading={deleteMutation.isLoading}
+            <LoadingButton sx={{ backgroundColor: "secondary.main", fontSize: 18, maxHeight: 50, mt: 2.5, ml: 2, }}
               variant="contained"
               loadingIndicator="Adding list"
               type="submit"
@@ -97,12 +73,11 @@ const SearchList = () => {
               Zoek
             </LoadingButton>
           </Stack>
-
-          <Stack
-            spacing={1}
-            sx={{ minHeight: 540, maxHeight: 540, overflow: "auto" }}
-          >
-            {isSubmitted && items.data.map(item => <SearchItem key={item.id} item={item} />)}
+          <Stack  alignItems="center" sx={{mt:5}}>
+              {isSubmitted && <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 40, color: "primary.main" }}>{title}</Typography>}
+             <Stack spacing={0.5} sx={{ minHeight: 450, maxHeight: 450, overflow: "auto" }} >
+               {isSubmitted && items.data.map(item => <SearchItem key={item.id} item={item} />)}
+             </Stack>
           </Stack>
         </Container>
       </>

@@ -104,7 +104,7 @@ const ItemDetail = () => {
                             sx={{ color: 'red.main', fontSize: 25 }}
                             loading={deleteMutation.isLoading}
                             variant="text"
-                            loadingIndicator="Adding list"
+                            loadingIndicator="deleting list"
                             type="submit"
                         >
                             Verwijder

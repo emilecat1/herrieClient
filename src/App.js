@@ -6,7 +6,6 @@ import Nav from "./components/Nav";
 import SearchItem from "./components/SearchItem";
 import AddList from "./pages/AddList";
 import Profile from "./pages/Profile";
-import Reservations from "./pages/Reservations";
 import ListPage from "./pages/ListPage";
 import AddListItem from "./pages/AddListItem";
 import SearchList from "./pages/SearchList";
@@ -64,7 +63,6 @@ function App() {
         <Route path="/List" element={<List />} />
         <Route path="/AddList" element={<AddList />} />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/Reservations" element={<Reservations />} />
         <Route path="/ListPage" element={<ListPage />} />
         <Route path="/ListDetail/:id" element={<ListPage />} />
         <Route path="/AddItem/:id" element={<AddItem />} />

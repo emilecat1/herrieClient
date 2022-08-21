@@ -21,11 +21,6 @@ const ListPage = () => {
     console.log(id);
 
     
-
-    
-
-
-
     const { isLoading, error, data: list } = useQuery(["lists", id], async () => {
         const data = await fetch(`${backendURL}/api/lists/${id}?populate=*`).then(r => r.json());
         console.log(data);
@@ -73,16 +68,7 @@ const ListPage = () => {
 
         navigate('/list')
     }
-
-    // const goTo = data => {
-
-    //     let listId = list.data.id;
-    //     console.log(listId, 'werk je gij nu eindelijk?');
-    //     navigate('/AddItem', { listId: listId});
-
-    // }
-
-   
+ 
 
     if (isLoading) {
         return <CircularProgress />
@@ -92,27 +78,66 @@ const ListPage = () => {
         return <Alert severity="error">Something went wrong</Alert>
     };
 
-    
-
-
 
     const items = list.data.attributes.items;
 
+
+
+
+    if (items.data.length === 0) {
+   
+        console.log(items.data.length);
+        console.log(list.data.id)
+
+        return (
+            <>
+                <GlobalStyles
+                    styles={{ body: { backgroundColor: "#eafcf7" }, }}
+                />
+
+                {isLoading && <CircularProgress />}
+                {error && <Alert severity="error">Something went wrong</Alert>}
+
+                <Stack direction="row">
+                    <IconButton component={Link} to="/List" color="primary" aria-label="profile" >
+                        <ArrowBackIcon sx={{ mt: 6, fontSize: 30 }} />
+                    </IconButton>
+                    <Typography variant="h2" sx={{ mt: 7 }}>{list.data.attributes.name}</Typography>
+
+
+                    <IconButton component={Link} to={`/AddItem/${list.data.id}`} color="secondary" aria-label="add"  >
+                        <AddBoxIcon sx={{ mt: 5, fontSize: 40 }} />
+                    </IconButton>
+                </Stack>
+                <Stack alignItems="center" sx={{mt:35}}>
+                     <Typography sx={{fontSize: 30, fontWeight: "bold", color: "red.softer"}}>Voeg een artikel toe</Typography>
+                </Stack>
+
+                <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)} direction="row" justifyContent="center" sx={{ mt: 5, ml: 4, mr: 4 }}>
+                    <LoadingButton
+                        sx={{ backgroundColor: 'red.main', fontSize: 20 }}
+                        variant="contained"
+                        loadingIndicator="Adding list"
+                        type="submit"
+                    >
+                        Verwijder lijst
+                    </LoadingButton>
+                </Stack>
+
+
+
+             
+
+            </>
+        );
+    }
+
+
+
     if (list) {
    
-        
-
-        console.log(items.data);
+        console.log(items.data.length);
         console.log(list.data.id)
-    
-       
-    
-       
-
-
-
-
-
 
         return (
             <>
@@ -148,12 +173,9 @@ const ListPage = () => {
                 <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)} direction="row" justifyContent="center" sx={{ mt: 5, ml: 4, mr: 4 }}>
                     <LoadingButton
                         sx={{ backgroundColor: 'red.main', fontSize: 20 }}
-                        // loading={deleteMutation.isLoading}
                         variant="contained"
-                    
                         loadingIndicator="Adding list"
                         type="submit"
-                        
                     >
                         Verwijder lijst
                     </LoadingButton>

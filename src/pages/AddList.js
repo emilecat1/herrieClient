@@ -89,6 +89,7 @@ const AddList = () => {
           <Stack sx={{ mt: 5, ml: 2 }}>
             <Typography variant="h1">Lijstje maken</Typography>
             <TextField
+              inputProps={{ maxLength: 20 }}
               sx={{ mt: 4, maxWidth: 300 }}
               id="name"
               label="lijst naam"

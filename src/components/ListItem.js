@@ -29,7 +29,7 @@ const ListItem = ({ item }) => {
                             <Stack alignItems="flex-end" sx={{ ml: 3, minWidth:170, mr:2 }}>
 
                                 <Typography noWrap sx={{ fontSize: 20, color: 'primary.main'}}>{item.attributes.productName}</Typography>
-                                <Typography>€ {item.attributes.price}</Typography>
+                                <Typography>€ {item.attributes.price.toLocaleString()}</Typography>
 
                                 {reserved ? <Typography sx={{color: "secondary.main"}}>gereserveerd!</Typography> :  <Typography noWrap sx={{color: "red.main"}}>niet gereserveerd!</Typography> }
 

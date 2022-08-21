@@ -22,7 +22,7 @@ const ListSelf = ({ list }) => {
                         </FormatListBulletedIcon>
                         </Box>
                         <Stack alignItems="flex-end" sx={{ ml: 3, width: 170 }}>
-                            <Typography noWrap sx={{ fontSize: 30, color: 'primary.main', width: 170 }}>{list.name}</Typography>
+                            <Typography noWrap sx={{ fontSize: 25, color: 'primary.main', width: 170 }}>{list.name}</Typography>
                             <Typography sx={{ mr: 4 }}>Lijstcode: {list.id}</Typography>
                         </Stack>
                     </Paper>

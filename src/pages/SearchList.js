@@ -116,8 +116,8 @@ const SearchList = () => {
               Zoek
             </LoadingButton>
           </Stack>
-          <Stack alignItems="center" sx={{mt:10}}>
-            <Typography sx={{fontSize: 60, ml: 6.5, fontWeight: "bold", color: "red.softer"}}>Lijstcode ongeldig</Typography>
+          <Stack alignItems="center" sx={{mt:25}}>
+            <Typography sx={{fontSize: 30, fontWeight: "bold", color: "red.softer"}}>Lijstcode ongeldig</Typography>
           </Stack>
 
         </Container>
@@ -164,7 +164,7 @@ const SearchList = () => {
           </Stack>
 
               <Stack  alignItems="center" sx={{mt:2}}>
-                  {isSubmitted && <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 40, color: "primary.main" }}>{title}</Typography>}
+                  {isSubmitted && <Typography component="h1" variant="h6" sx={{ fontWeight: "bold", fontSize: 28, color: "primary.main" }}>{title}</Typography>}
                 <Stack spacing={0.5} sx={{ minHeight: 450, maxHeight: 450, overflow: "auto" }} >
                   {isSubmitted && items.data.map(item => <SearchItem key={item.id} item={item} />)}
                 </Stack>

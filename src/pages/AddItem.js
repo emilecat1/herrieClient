@@ -8,6 +8,7 @@ import { useStore } from '../store'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 
 
 
@@ -38,6 +39,10 @@ const AddItem = ({ route }) => {
         productName: "",
         description: ""
     };
+
+    const Input = styled('input')({
+        display: 'none',
+      });
 
     const navigate = useNavigate();
 
@@ -91,9 +96,11 @@ const AddItem = ({ route }) => {
             <Stack as="form" noValidate onSubmit={handleSubmit(onSubmit)}>
                 <Stack>
 
-                    <Stack alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 7 }}>
+                     <Stack alignItems="center" spacing={2} sx={{ ml: 2, mr: 2, mt: 7 }}>
                          <Typography component="h1" variant="h6" sx={{ fontWeight: "normal", fontSize: 40, color: "primary.main", lineHeight: "35px", }} > add item </Typography>
                      </Stack>
+
+                   
 
                     <Stack sx={{ ml: 2, mr: 2, mt: 2 }}>
                         <Typography sx={{ mt: 3, mb: 1 }} variant="h2nalf">Product naam</Typography>
